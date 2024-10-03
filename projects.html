@@ -64,6 +64,15 @@
             border-radius: 4px;
         }
 
+        .project-details a {
+            color: #3498DB;
+            text-decoration: none;
+        }
+
+        .project-details a:hover {
+            text-decoration: underline;
+        }
+
         .button-container {
            display: flex;
            align-items: center;
@@ -109,10 +118,20 @@
 
    <div class="project-grid">
      <div class="project" onclick="toggleDetails(this)">
-         <h2>Steam Worksop url to Id </h2>
-         <a href=https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id->Take me to the Github</a>
+         <h2>Steam Workshop URL to ID</h2>
+         <p>Convert Steam Workshop URLs to IDs</p>
          <div class="project-details">
-             <p>This is a simple python script that you give it a txt file with many steam worksop urls then give it the destination then it will make a new txt file with the ids</p>
+             <p>
+                 <a href="https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-" target="_blank">View on GitHub</a>
+             </p>
+             <p>This is a simple Python script that takes a text file containing multiple Steam Workshop URLs, processes them, and creates a new text file with the corresponding IDs. Here's how it works:</p>
+             <ol>
+                 <li>You provide a text file with Steam Workshop URLs</li>
+                 <li>You specify the destination for the output</li>
+                 <li>The script processes the URLs and extracts the IDs</li>
+                 <li>A new text file is created with the extracted IDs</li>
+             </ol>
+             <p>This tool is useful for managing and organizing Steam Workshop content more efficiently.</p>
          </div>
      </div>
 
