@@ -17,12 +17,15 @@
             color: #E0E0E0; /* Lighter text for contrast */
             margin: 0;
             padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
         h1 {
-            font-size: 3em;
-            text-align: center;
-            margin-bottom: 2rem;
+            font-size: 3.5em; /* Consistent font size */
+            margin-bottom: 20px;
             animation: fadeIn 1s ease-out;
         }
 
@@ -67,6 +70,7 @@
            justify-content:center ;
            gap :20px ;
            margin-top :20px ;
+           animation: fadeIn 1s ease-out 0.6s both;
        }
 
        .fab {
@@ -82,8 +86,8 @@
        }
 
        .back-button {
-           background-color: #3498DB; /* Button color */
-           border-radius: 25px; /* Rounded corners */
+           background-color:#3498DB ; /* Button color */
+           border-radius:.5rem ; /* Rounded corners */
            color:white ; /* Text color */
            padding:.8rem ; /* Padding for button */
            text-decoration:none ; /* Remove underline from links */
@@ -93,46 +97,49 @@
        }
 
        .back-button:hover {
-             background-color:#2980B9 ; /* Darker shade on hover */
-       }
+           background-color:#2980B9 ; /* Darker shade on hover */
+       } 
     </style>
 </head>
+
 <body>
-    <h1>foogle Projects</h1>
 
-    <div class="project-grid">
-        <div class="project" onclick="toggleDetails(this)">
-            <h2>Project 1</h2>
-            <p>Short description of Project 1</p>
-             <div class="project-details">
-                <p>Detailed description of Project 1. This project aims to revolutionize how we interact with technology in our daily lives.</p>
-             </div>
+   <h1>foogle Projects</h1>
+
+   <div class="project-grid">
+     <div class="project" onclick="toggleDetails(this)">
+         <h2>Project 1</h2>
+         <p>Short description of Project 1</p>
+         <div class="project-details">
+             <p>Detailed description of Project 1. This project aims to revolutionize how we interact with technology in our daily lives.</p>
          </div>
-
-         <div class="project" onclick="toggleDetails(this)">
-             <h2>Project 2</h2>
-             <p>Short description of Project 2</p>
-             <div class="project-details">
-                <p>Detailed description of Project 2. This project focuses on developing sustainable energy solutions for urban environments.</p>
-             </div>
-         </div>
-
-         <!-- Add more project templates as needed -->
-
      </div>
 
-     <div class="button-container">
-         <i class="fab fa-github" onclick="window.open('https://github.com/Fiddlyfoogle', '_blank')"></i>
-         <a href="index.html" class="back-button">Back to Main Menu</a>
-         <i class="fab fa-discord" onclick="window.open('https://discord.com/invite/aAZsmPRJ', '_blank')"></i>
+     <div class="project" onclick="toggleDetails(this)">
+         <h2>Project 2</h2>
+         <p>Short description of Project 2</p>
+         <div class="project-details">
+             <p>Detailed description of Project 2. This project focuses on developing sustainable energy solutions for urban environments.</p>
+         </div>
      </div>
 
-     <script>
-         function toggleDetails(project) {
-             const details = project.querySelector('.project-details');
-             details.style.display = details.style.display === 'block' ? 'none' : 'block';
-         }
-     </script>
+     <!-- Add more project templates as needed -->
+
+   </div>
+
+   <div class="button-container">
+       <i class="fab fa-github" onclick="window.open('https://github.com/Fiddlyfoogle', '_blank')"></i>
+       <a href="index.html" class="back-button">Back to Main Menu</a>
+       <i class="fab fa-discord" onclick="window.open('https://discord.com/invite/aAZsmPRJ', '_blank')"></i>
+   </div>
+
+   <script>
+       function toggleDetails(project) {
+           const details = project.querySelector('.project-details');
+           details.style.display = details.style.display === 'block' ? 'none' : 'block';
+       }
+   </script>
 
 </body>
+
 </html>
