@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>foogle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0F1620; /* Darker background */
+            color: #E0E0E0; /* Lighter text for contrast */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3.5em; /* Slightly smaller */
+            margin-bottom: 20px;
+            font-weight: bold;
+            animation: fadeIn 1s ease-out;
+        }
+
+        #greeting {
+            font-size: 1.2em; /* Smaller font size */
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1s ease-out 1s both;
+        }
+
+        .fab {
+            font-size: 24px;
+            color: #3498DB;
+            transition: transform 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .fab:hover {
+            transform: scale(1.2);
+            color: #2980B9;
+        }
+
+        .button {
+            background-color: #3B4C6B; /* Button background color */
+            color: white; /* Text color */
+            padding: 15px 32px; /* Padding for button */
+            border-radius: 25px; /* Rounded corners for button */
+            text-decoration: none; /* Remove underline from links */
+            display: inline-block; /* Inline-block for button styling */
+            font-size: 1em; /* Adjusted font size */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+            margin-top: 20px; /* Margin above button */
+        }
+
+        .button:hover {
+            background-color: #526D82; /* Darker shade on hover */
+            transform: translateY(-5px) scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>foogle</h1>
+    <p id="greeting"></p>
+    <div class="button-container">
+        <i class="fab fa-github" onclick="window.open('https://github.com/Fiddlyfoogle', '_blank')"></i>
+        <a href="projects.html" class="button">All Projects</a>
+        <i class="fab fa-discord" onclick="window.open('https://discord.com/invite/aAZsmPRJ', '_blank')"></i>
+    </div>
+
+    <script>
+        function updateTime() {
+          const now = new Date();
+          const options = { timeZone: 'GMT', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+          const timeString = now.toLocaleTimeString('en-US', options);
+          document.getElementById('greeting').textContent = `Hi, I'm foogle. It is ${timeString} for me`;
+      }
+      updateTime();
+      setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
