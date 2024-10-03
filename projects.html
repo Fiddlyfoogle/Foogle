@@ -6,9 +6,14 @@
     <title>foogle Projects</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #1A1F2B; /* Darker background */
+            background-color: #0F1620; /* Darker background */
             color: #E0E0E0; /* Lighter text for contrast */
             margin: 0;
             padding: 40px 20px;
@@ -18,6 +23,7 @@
             font-size: 3em;
             text-align: center;
             margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
         }
 
         .project-grid {
@@ -26,6 +32,7 @@
             gap: 20px;
             width: 100%;
             max-width: 1000px;
+            animation: fadeIn 1s ease-out 0.3s both;
         }
 
         .project {
@@ -34,6 +41,7 @@
             padding: 20px; /* Padding inside project cards */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+            cursor: pointer;
         }
 
         .project:hover {
@@ -42,6 +50,15 @@
 
         .project h2 {
             margin-top: 0; /* Remove default margin */
+            color: #4A90E2; /* Brighter color for project titles */
+        }
+
+        .project-details {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2C3E50; /* Darker details background */
+            border-radius: 4px;
         }
 
         .button-container {
@@ -65,19 +82,18 @@
        }
 
        .back-button {
-           display:inline-block ; 
-           padding :10px 20px ; 
-           background-color :#3498DB ; 
-           color:white ; 
-           text-align:center ; 
-           text-decoration:none ; 
-           border-radius :25px ; 
-           transition :background-color .3s ease , transform .3s ease ;
+           background-color: #3498DB; /* Button color */
+           border-radius: 25px; /* Rounded corners */
+           color:white ; /* Text color */
+           padding:.8rem ; /* Padding for button */
+           text-decoration:none ; /* Remove underline from links */
+           display:inline-block ; /* Inline-block for button styling */
+           margin-top :20px ; /* Margin above button */
+           transition:.3s ; /* Smooth transition for hover effects */
        }
 
        .back-button:hover {
-           background-color :#2980B9 ; 
-           transform :translateY(-2px) ; 
+             background-color:#2980B9 ; /* Darker shade on hover */
        }
     </style>
 </head>
@@ -89,7 +105,7 @@
             <h2>Project 1</h2>
             <p>Short description of Project 1</p>
              <div class="project-details">
-                <p>Detailed description of Project 1.</p>
+                <p>Detailed description of Project 1. This project aims to revolutionize how we interact with technology in our daily lives.</p>
              </div>
          </div>
 
@@ -97,7 +113,7 @@
              <h2>Project 2</h2>
              <p>Short description of Project 2</p>
              <div class="project-details">
-                <p>Detailed description of Project 2.</p>
+                <p>Detailed description of Project 2. This project focuses on developing sustainable energy solutions for urban environments.</p>
              </div>
          </div>
 
