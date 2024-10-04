@@ -13,8 +13,8 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #0F1620; /* Darker background */
-            color: #E0E0E0; /* Lighter text for contrast */
+            background: linear-gradient(to bottom, #0F1620, #1A2638);
+            color: #E0E0E0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,14 +26,14 @@
         }
 
         h1 {
-            font-size: 3.5em; /* Slightly smaller */
+            font-size: 3.5em;
             margin-bottom: 20px;
             font-weight: bold;
             animation: fadeIn 1s ease-out;
         }
 
         #greeting {
-            font-size: 1.2em; /* Smaller font size */
+            font-size: 1.2em;
             margin-bottom: 30px;
             animation: fadeIn 1s ease-out 0.5s both;
         }
@@ -42,7 +42,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
             animation: fadeIn 1s ease-out 1s both;
         }
 
@@ -59,19 +59,19 @@
         }
 
         .button {
-            background-color: #3B4C6B; /* Button background color */
-            color: white; /* Text color */
-            padding: 15px 32px; /* Padding for button */
-            border-radius: 25px; /* Rounded corners for button */
-            text-decoration: none; /* Remove underline from links */
-            display: inline-block; /* Inline-block for button styling */
-            font-size: 1em; /* Adjusted font size */
-            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
-            margin-top: 20px; /* Margin above button */
+            background-color: #3B4C6B;
+            color: white;
+            padding: 15px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
         }
 
         .button:hover {
-            background-color: #526D82; /* Darker shade on hover */
+            background-color: #526D82;
             transform: translateY(-5px) scale(1.05);
         }
     </style>
