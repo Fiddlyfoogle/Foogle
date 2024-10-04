@@ -35,7 +35,6 @@
             overflow-x: auto;
             white-space: nowrap;
             padding: 20px 0;
-            animation: fadeIn 1s ease-out 0.3s both;
         }
 
         .project-grid {
@@ -48,9 +47,11 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            width: 280px; /* Default width */
+            width: 280px; /* Fixed width for consistency */
+            display: flex; /* Flexbox for vertical alignment */
+            flex-direction: column; /* Stack elements vertically */
         }
 
         .project:hover {
@@ -100,12 +101,12 @@
             display: inline-block;
             font-size: 1em;
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
+            margin-top: 20px; 
         }
 
         .back-button:hover {
-            background-color: #526D82;
-            transform: translateY(-5px) scale(1.05);
+            background-color: #526D82; 
+            transform: translateY(-5px) scale(1.05); 
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
     </style>
@@ -116,16 +117,16 @@
    <div class="project-scroll">
      <div class="project-grid">
        <div class="project" onclick="toggleDetails(this)">
-           <h2>Steam Worksop url to Id </h2>
-           <a href="https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-" target="_blank">Take me to the Github</a>
+           <h2>Steam Workshop URL to ID</h2>
+           <a href="https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-" target="_blank">Take me to the GitHub</a>
            <div class="project-details">
                <p>This is a simple Python script that processes a text file with many Steam Workshop URLs and creates a new text file with the corresponding IDs.</p>
            </div>
        </div>
 
        <div class="project" onclick="toggleDetails(this)">
-           <h2>Steam Worksop Id to Url</h2>
-           <a href="https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url-" target="_blank">Take me to the Github</a>
+           <h2>Steam Workshop ID to URL</h2>
+           <a href="https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url-" target="_blank">Take me to the GitHub</a>
            <div class="project-details">
                <p>This project is the opposite of my Steam Workshop URL to ID project.</p>
            </div>
@@ -133,7 +134,7 @@
 
        <div class="project" onclick="toggleDetails(this)">
            <h2>Roblox Group Scanner</h2>
-           <a href="https://github.com/Fiddlyfoogle/Roblox-Group-Scanner" target="_blank">Take me to the Github</a>
+           <a href="https://github.com/Fiddlyfoogle/Roblox-Group-Scanner" target="_blank">Take me to the GitHub</a>
            <div class="project-details">
                <p>This tool scans Roblox groups for various types of information.</p>
            </div>
