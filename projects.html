@@ -11,9 +11,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #0F1620, #1A2638);
+            background: linear-gradient(135deg, #0F1620, #1A2638);
             color: #E0E0E0;
             margin: 0;
             padding: 40px 20px;
@@ -29,17 +34,17 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .project-scroll {
+        .project-container {
             width: 100%;
-            max-width: 1000px;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 20px 0;
+            max-width: 600px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
         }
 
-        .project-grid {
-            display: inline-flex;
-            gap: 20px;
+        .project-slider {
+            display: flex;
+            transition: transform 0.5s ease;
         }
 
         .project {
@@ -47,13 +52,10 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            width: 280px; /* Fixed width for consistency */
-        }
-
-        .project:hover {
-            transform: translateY(-5px);
+            width: 100%;
+            flex-shrink: 0;
+            box-sizing: border-box;
+            animation: slideIn 0.5s ease-out;
         }
 
         .project h2 {
@@ -66,14 +68,19 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .project a:hover {
+            color: #2980B9;
         }
 
         .project-details {
-            display: none; /* Initially hidden */
             margin-top: 10px;
             padding: 10px;
             background-color: #2C3E50;
             border-radius: 4px;
+            transition: all 0.3s ease;
         }
 
         .button-container {
@@ -98,60 +105,30 @@
         }
 
         .back-button {
-            background-color: #3B4C6B; 
-            color: white; 
-            padding: 15px 32px; 
-            border-radius: 25px; 
-            text-decoration: none; 
-            display: inline-block; 
-            font-size: 1em; 
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
-            margin-top: 20px; 
+            background-color: #3B4C6B;
+            color: white;
+            padding: 15px 32px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
 
         .back-button:hover {
-            background-color:#526D82; 
-            transform :translateY(-5px) scale(1.05); 
-            box-shadow :0 6px 15px rgba(0,0,0,.4);
+            background-color: #526D82;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
     </style>
 </head>
 <body>
    <h1>foogle Projects</h1>
 
-   <div class="project-scroll">
-     <div class="project-grid">
-       <div class="project" onclick="toggleDetails(this)">
-           <h2>Steam Workshop URL to ID</h2>
-           <a href="https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-" target="_blank">Take me to the GitHub</a>
-           <div class="project-details">
-               <p>This is a simple Python script that processes a text file with many Steam Workshop URLs and creates a new text file with the corresponding IDs.</p>
-           </div>
-       </div>
-
-       <div class="project" onclick="toggleDetails(this)">
-           <h2>Steam Workshop ID to URL</h2>
-           <a href="https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url-" target="_blank">Take me to the GitHub</a>
-           <div class="project-details">
-               <p>This project is the opposite of my Steam Workshop URL to ID project.</p>
-           </div>
-       </div>
-
-       <div class="project" onclick="toggleDetails(this)">
-           <h2>Roblox Group Scanner</h2>
-           <a href="https://github.com/Fiddlyfoogle/Roblox-Group-Scanner" target="_blank">Take me to the GitHub</a>
-           <div class="project-details">
-               <p>This tool scans Roblox groups for various types of information.</p>
-           </div>
-       </div>
-
-       <div class="project" onclick="toggleDetails(this)">
-           <h2>Project 4</h2>
-           <p>Test</p>
-           <div class="project-details">
-               <p>Test description.</p>
-           </div>
-       </div>
+   <div class="project-container">
+     <div id="projectSlider" class="project-slider">
+         <!-- Projects will be dynamically inserted here -->
      </div>
    </div>
 
@@ -162,18 +139,109 @@
    </div>
 
    <script>
-       function toggleDetails(project) {
-           const details = project.querySelector('.project-details');
-           
-           // Toggle visibility of project details
-           if (details.style.display === 'block') {
-               details.style.display = 'none'; // Hide if already visible
-           } else {
-               // Hide all other project details
-               document.querySelectorAll('.project-details').forEach(detail => detail.style.display = 'none');
-               details.style.display = 'block'; // Show this project's details
+       const projects = [
+           {
+               title: "Steam Workshop URL to ID",
+               github: "https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-",
+               description: "This is a simple Python script that processes a text file with many Steam Workshop URLs and creates a new text file with the corresponding IDs."
+           },
+           {
+               title: "Steam Workshop ID to URL",
+               github: "https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url-",
+               description: "This project is the opposite of my Steam Workshop URL to ID project."
+           },
+           {
+               title: "Roblox Group Scanner",
+               github: "https://github.com/Fiddlyfoogle/Roblox-Group-Scanner",
+               description: "This tool scans Roblox groups for various types of information."
+           },
+           {
+               title: "Project 4",
+               github: "#",
+               description: "Test description."
            }
+       ];
+
+       const slider = document.getElementById('projectSlider');
+       let currentIndex = 0;
+       let startX;
+       let currentX;
+
+       function createProjectElement(project) {
+           const projectElement = document.createElement('div');
+           projectElement.className = 'project';
+           projectElement.innerHTML = `
+               <h2>${project.title}</h2>
+               <a href="${project.github}" target="_blank">Take me to the GitHub</a>
+               <div class="project-details">
+                   <p>${project.description}</p>
+               </div>
+           `;
+           return projectElement;
        }
+
+       // Populate the slider with projects
+       projects.forEach(project => {
+           slider.appendChild(createProjectElement(project));
+       });
+
+       // Touch events for mobile
+       slider.addEventListener('touchstart', e => {
+           startX = e.touches[0].clientX;
+       });
+
+       slider.addEventListener('touchmove', e => {
+           if (!startX) return;
+           e.preventDefault();
+           currentX = e.touches[0].clientX;
+           const diff = startX - currentX;
+           slider.style.transform = `translateX(${-currentIndex * 100 - diff}px)`;
+       });
+
+       slider.addEventListener('touchend', e => {
+           if (!startX) return;
+           const diff = startX - currentX;
+           if (Math.abs(diff) > 50) {
+               currentIndex += diff > 0 ? 1 : -1;
+               currentIndex = Math.max(0, Math.min(currentIndex, projects.length - 1));
+           }
+           slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+           startX = null;
+           currentX = null;
+       });
+
+       // Mouse events for desktop
+       slider.addEventListener('mousedown', e => {
+           startX = e.clientX;
+           e.preventDefault();
+       });
+
+       slider.addEventListener('mousemove', e => {
+           if (!startX) return;
+           currentX = e.clientX;
+           const diff = startX - currentX;
+           slider.style.transform = `translateX(${-currentIndex * 100 - diff}px)`;
+       });
+
+       slider.addEventListener('mouseup', e => {
+           if (!startX) return;
+           const diff = startX - currentX;
+           if (Math.abs(diff) > 50) {
+               currentIndex += diff > 0 ? 1 : -1;
+               currentIndex = Math.max(0, Math.min(currentIndex, projects.length - 1));
+           }
+           slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+           startX = null;
+           currentX = null;
+       });
+
+       slider.addEventListener('mouseleave', () => {
+           if (startX) {
+               slider.style.transform = `translateX(${-currentIndex * 100}%)`;
+               startX = null;
+               currentX = null;
+           }
+       });
    </script>
 </body>
 </html>
