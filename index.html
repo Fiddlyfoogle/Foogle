@@ -11,25 +11,32 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #0F1620, #1A2638);
+            background: linear-gradient(135deg, #0F1620, #1A2638);
             color: #E0E0E0;
+            margin: 0;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            margin: 0;
             text-align: center;
-            padding: 20px;
+            overflow: hidden;
         }
 
         h1 {
-            font-size: 3.5em;
+            font-size: 4em;
             margin-bottom: 20px;
             font-weight: bold;
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 1s ease-out, float 6s ease-in-out infinite;
         }
 
         #greeting {
@@ -42,7 +49,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 20px;
             animation: fadeIn 1s ease-out 1s both;
         }
 
@@ -66,13 +73,48 @@
             text-decoration: none;
             display: inline-block;
             font-size: 1em;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            margin-top: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .button:hover {
             background-color: #526D82;
-            transform: translateY(-5px) scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .button:hover::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
         }
     </style>
 </head>
@@ -87,13 +129,13 @@
 
     <script>
         function updateTime() {
-          const now = new Date();
-          const options = { timeZone: 'GMT', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-          const timeString = now.toLocaleTimeString('en-US', options);
-          document.getElementById('greeting').textContent = `Hi, I'm foogle. It is ${timeString} for me`;
-      }
-      updateTime();
-      setInterval(updateTime, 1000);
+            const now = new Date();
+            const options = { timeZone: 'GMT', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const timeString = now.toLocaleTimeString('en-US', options);
+            document.getElementById('greeting').textContent = `Hi, I'm foogle. It is ${timeString} for me`;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
     </script>
 </body>
 </html>
