@@ -29,13 +29,18 @@
             animation: fadeIn 1s ease-out;
         }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+        .project-scroll {
             width: 100%;
             max-width: 1000px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 20px 0;
             animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .project-grid {
+            display: inline-flex;
+            gap: 20px;
         }
 
         .project {
@@ -45,6 +50,8 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            width: 280px;
+            white-space: normal;
         }
 
         .project:hover {
@@ -107,39 +114,40 @@
 <body>
    <h1>foogle Projects</h1>
 
-   <div class="project-grid">
-     <div class="project" onclick="toggleDetails(this)">
-         <h2>Steam Worksop url to Id </h2>
-         <a href=https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id->Take me to the Github</a>
-         <div class="project-details">
-             <p>This is a simple python script that you give it a txt file with many steam worksop urls then give it the destination then it will make a new txt file with the ids</p>
-         </div>
-     </div>
+   <div class="project-scroll">
+     <div class="project-grid">
+       <div class="project" onclick="toggleDetails(this)">
+           <h2>Steam Worksop url to Id </h2>
+           <a href="https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-">Take me to the Github</a>
+           <div class="project-details">
+               <p>This is a simple python script that you give it a txt file with many steam worksop urls then give it the destination then it will make a new txt file with the ids</p>
+           </div>
+       </div>
 
-     <div class="project" onclick="toggleDetails(this)">
-         <h2> Steam Worksop Id to Url</h2>
-         <a href=https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url->Take me to the Github</a>
-         <div class="project-details">
-             <p>Just an opposite of my Steam-Workshop-url-to-Id project</p>
-         </div>
-     </div>
+       <div class="project" onclick="toggleDetails(this)">
+           <h2> Steam Worksop Id to Url</h2>
+           <a href="https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url-">Take me to the Github</a>
+           <div class="project-details">
+               <p>Just an opposite of my Steam-Workshop-url-to-Id project</p>
+           </div>
+       </div>
 
-     <div class="project" onclick="toggleDetails(this)">
-         <h2>Roblox Group Scanner</h2>
-          <a href=https://github.com/Fiddlyfoogle/Roblox-Group-Scanner>Take me to the Github</a>
-         <div class="project-details">
-             <p>Scans roblox groups for all different types of things</p>
-         </div>
-     </div>
+       <div class="project" onclick="toggleDetails(this)">
+           <h2>Roblox Group Scanner</h2>
+            <a href="https://github.com/Fiddlyfoogle/Roblox-Group-Scanner">Take me to the Github</a>
+           <div class="project-details">
+               <p>Scans roblox groups for all different types of things</p>
+           </div>
+       </div>
 
-     <div class="project" onclick="toggleDetails(this)">
-         <h2>Project 4</h2>
-         <p>Test</p>
-         <div class="project-details">
-             <p>Test</p>
-         </div>
+       <div class="project" onclick="toggleDetails(this)">
+           <h2>Project 4</h2>
+           <p>Test</p>
+           <div class="project-details">
+               <p>Test</p>
+           </div>
+       </div>
      </div>
-
    </div>
 
    <div class="button-container">
