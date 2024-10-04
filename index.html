@@ -17,6 +17,12 @@
             100% { transform: translateY(0px); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #0F1620, #1A2638);
@@ -30,6 +36,7 @@
             min-height: 100vh;
             text-align: center;
             overflow: hidden;
+            transition: background 0.5s ease;
         }
 
         h1 {
@@ -37,12 +44,18 @@
             margin-bottom: 20px;
             font-weight: bold;
             animation: fadeIn 1s ease-out, float 6s ease-in-out infinite;
+            transition: color 0.3s ease;
+        }
+
+        h1:hover {
+            color: #4A90E2;
         }
 
         #greeting {
             font-size: 1.2em;
             margin-bottom: 30px;
             animation: fadeIn 1s ease-out 0.5s both;
+            transition: all 0.3s ease;
         }
 
         .button-container {
@@ -56,12 +69,12 @@
         .fab {
             font-size: 24px;
             color: #3498DB;
-            transition: transform 0.3s ease, color 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .fab:hover {
-            transform: scale(1.2);
+            transform: scale(1.2) rotate(360deg);
             color: #2980B9;
         }
 
@@ -76,12 +89,14 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            animation: pulse 2s infinite;
         }
 
         .button:hover {
             background-color: #526D82;
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: none;
         }
 
         .button::after {
@@ -132,7 +147,12 @@
             const now = new Date();
             const options = { timeZone: 'GMT', hour: '2-digit', minute: '2-digit', second: '2-digit' };
             const timeString = now.toLocaleTimeString('en-US', options);
-            document.getElementById('greeting').textContent = `Hi, I'm foogle. It is ${timeString} for me`;
+            const greeting = document.getElementById('greeting');
+            greeting.textContent = `Hi, I'm foogle. It is ${timeString} for me`;
+            greeting.style.opacity = 0;
+            setTimeout(() => {
+                greeting.style.opacity = 1;
+            }, 50);
         }
         updateTime();
         setInterval(updateTime, 1000);
