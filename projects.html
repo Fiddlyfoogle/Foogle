@@ -31,7 +31,7 @@
 
         .project-scroll {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             overflow-x: auto;
             white-space: nowrap;
             padding: 20px 0;
@@ -47,25 +47,13 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            width: 280px;
-            height: 200px;
-            overflow: hidden;
-            white-space: normal;
-            text-align: left;
+            width: 280px; /* Fixed width for consistency */
         }
 
-        .project.expanded {
-            width: 600px;
-            height: auto;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.2);
-            z-index: 1000;
-            overflow-y: auto;
-            max-height: 80vh;
+        .project:hover {
+            transform: translateY(-5px);
         }
 
         .project h2 {
@@ -81,7 +69,7 @@
         }
 
         .project-details {
-            display: none;
+            display: none; /* Initially hidden */
             margin-top: 10px;
             padding: 10px;
             background-color: #2C3E50;
@@ -110,32 +98,21 @@
         }
 
         .back-button {
-            background-color: #3B4C6B;
-            color: white;
-            padding: 15px 32px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 1em;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
+            background-color: #3B4C6B; 
+            color: white; 
+            padding: 15px 32px; 
+            border-radius: 25px; 
+            text-decoration: none; 
+            display: inline-block; 
+            font-size: 1em; 
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+            margin-top: 20px; 
         }
 
         .back-button:hover {
-            background-color: #526D82;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-        }
-
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 999;
+            background-color:#526D82; 
+            transform :translateY(-5px) scale(1.05); 
+            box-shadow :0 6px 15px rgba(0,0,0,.4);
         }
     </style>
 </head>
@@ -184,32 +161,23 @@
        <i class="fab fa-discord" onclick="window.open('https://discord.com/invite/aAZsmPRJ', '_blank')"></i>
    </div>
 
-   <div class="overlay" onclick="closeExpandedProject()"></div>
-
    <script>
        function toggleDetails(project) {
            const details = project.querySelector('.project-details');
-           const overlay = document.querySelector('.overlay');
            
-           if (project.classList.contains('expanded')) {
-               // If already expanded, close it
-               project.classList.remove('expanded');
-               details.style.display = 'none';
-               overlay.style.display = 'none';
-           } else {
-               // If not expanded, expand it
-               project.classList.add('expanded');
-               details.style.display = 'block';
-               overlay.style.display = 'block';
-           }
-       }
+           // Hide all projects
+           document.querySelectorAll('.project').forEach(p => {
+               if (p !== project) {
+                   p.style.display = 'none'; // Hide other projects
+               }
+           });
 
-       function closeExpandedProject() {
-           const expandedProject = document.querySelector('.project.expanded');
-           if (expandedProject) {
-               expandedProject.classList.remove('expanded');
-               expandedProject.querySelector('.project-details').style.display = 'none';
-               document.querySelector('.overlay').style.display = 'none';
+           // Show or hide details of the clicked project
+           if (details.style.display === 'block') {
+               details.style.display = 'none'; // Hide details if already visible
+               document.querySelectorAll('.project').forEach(p => p.style.display = 'block'); // Show all projects again
+           } else {
+               details.style.display = 'block'; // Show details
            }
        }
    </script>
