@@ -47,11 +47,11 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
-            width: 280px; /* Fixed width for consistency */
-            display: flex; /* Flexbox for vertical alignment */
-            flex-direction: column; /* Stack elements vertically */
+            width: 280px;
+            white-space: normal;
+            text-align: left;
         }
 
         .project:hover {
@@ -63,8 +63,15 @@
             color: #4A90E2;
         }
 
+        .project a {
+            color: #3498DB;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
         .project-details {
-            display: none; /* Initially hidden */
+            display: none;
             margin-top: 10px;
             padding: 10px;
             background-color: #2C3E50;
@@ -101,12 +108,12 @@
             display: inline-block;
             font-size: 1em;
             transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px; 
+            margin-top: 20px;
         }
 
         .back-button:hover {
-            background-color: #526D82; 
-            transform: translateY(-5px) scale(1.05); 
+            background-color: #526D82;
+            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
     </style>
@@ -159,28 +166,25 @@
    <script>
        function toggleDetails(project) {
            const details = project.querySelector('.project-details');
-           
-           // Hide all projects
-           document.querySelectorAll('.project').forEach(p => {
-               if (p !== project) {
-                   p.style.display = 'none'; // Hide other projects
-               }
-           });
+           const isExpanded = project.style.transform === 'scale(1.5)';
 
-           // Enlarge the clicked project
-           project.style.transform = 'scale(1.5)';
-           
-           // Show the details of the clicked project
-           details.style.display = 'block';
-           
-           // Add an event listener to reset when clicking again
-           project.addEventListener('click', function() {
-               if (details.style.display === 'block') {
-                   details.style.display = 'none';
-                   project.style.transform = 'scale(1)'; // Reset size
-                   document.querySelectorAll('.project').forEach(p => p.style.display = 'block'); // Show all projects again
-               }
-           }, { once : true }); // Ensure this runs only once per click
+           if (isExpanded) {
+               // If expanded, collapse
+               details.style.display = 'none';
+               project.style.transform = 'scale(1)';
+               project.style.width = '280px';
+               document.querySelectorAll('.project').forEach(p => p.style.display = 'block');
+           } else {
+               // If collapsed, expand
+               document.querySelectorAll('.project').forEach(p => {
+                   if (p !== project) {
+                       p.style.display = 'none';
+                   }
+               });
+               project.style.transform = 'scale(1.5)';
+               project.style.width = '420px'; // Increased width for better readability
+               details.style.display = 'block';
+           }
        }
    </script>
 </body>
