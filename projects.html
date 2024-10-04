@@ -48,10 +48,9 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
             cursor: pointer;
-            width: 280px;
-            white-space: normal;
+            width: 280px; /* Default width */
         }
 
         .project:hover {
@@ -64,7 +63,7 @@
         }
 
         .project-details {
-            display: none;
+            display: none; /* Initially hidden */
             margin-top: 10px;
             padding: 10px;
             background-color: #2C3E50;
@@ -116,35 +115,35 @@
 
    <div class="project-scroll">
      <div class="project-grid">
-       <div class="project">
+       <div class="project" onclick="toggleDetails(this)">
            <h2>Steam Worksop url to Id </h2>
            <a href="https://github.com/Fiddlyfoogle/Steam-Worksop-url-to-Id-" target="_blank">Take me to the Github</a>
            <div class="project-details">
-               <p>This is a simple python script that you give it a txt file with many steam worksop urls then give it the destination then it will make a new txt file with the ids</p>
+               <p>This is a simple Python script that processes a text file with many Steam Workshop URLs and creates a new text file with the corresponding IDs.</p>
            </div>
        </div>
 
-       <div class="project">
-           <h2> Steam Worksop Id to Url</h2>
+       <div class="project" onclick="toggleDetails(this)">
+           <h2>Steam Worksop Id to Url</h2>
            <a href="https://github.com/Fiddlyfoogle/Steam-Workshop-id-to-url-" target="_blank">Take me to the Github</a>
            <div class="project-details">
-               <p>Just an opposite of my Steam-Workshop-url-to-Id project</p>
+               <p>This project is the opposite of my Steam Workshop URL to ID project.</p>
            </div>
        </div>
 
-       <div class="project">
+       <div class="project" onclick="toggleDetails(this)">
            <h2>Roblox Group Scanner</h2>
-            <a href="https://github.com/Fiddlyfoogle/Roblox-Group-Scanner" target="_blank">Take me to the Github</a>
+           <a href="https://github.com/Fiddlyfoogle/Roblox-Group-Scanner" target="_blank">Take me to the Github</a>
            <div class="project-details">
-               <p>Scans roblox groups for all different types of things</p>
+               <p>This tool scans Roblox groups for various types of information.</p>
            </div>
        </div>
 
-       <div class="project">
+       <div class="project" onclick="toggleDetails(this)">
            <h2>Project 4</h2>
            <p>Test</p>
            <div class="project-details">
-               <p>Test</p>
+               <p>Test description.</p>
            </div>
        </div>
      </div>
@@ -157,24 +156,31 @@
    </div>
 
    <script>
-       document.querySelectorAll('.project').forEach(project => {
-           project.addEventListener('click', function(e) {
-               if (e.target.tagName !== 'A') {
-                   const details = this.querySelector('.project-details');
-                   const isVisible = details.style.display === 'block';
-                   
-                   // Hide all project details
-                   document.querySelectorAll('.project-details').forEach(detail => {
-                       detail.style.display = 'none';
-                   });
-
-                   // If the clicked project wasn't visible, show it
-                   if (!isVisible) {
-                       details.style.display = 'block';
-                   }
+       function toggleDetails(project) {
+           const details = project.querySelector('.project-details');
+           
+           // Hide all projects
+           document.querySelectorAll('.project').forEach(p => {
+               if (p !== project) {
+                   p.style.display = 'none'; // Hide other projects
                }
            });
-       });
+
+           // Enlarge the clicked project
+           project.style.transform = 'scale(1.5)';
+           
+           // Show the details of the clicked project
+           details.style.display = 'block';
+           
+           // Add an event listener to reset when clicking again
+           project.addEventListener('click', function() {
+               if (details.style.display === 'block') {
+                   details.style.display = 'none';
+                   project.style.transform = 'scale(1)'; // Reset size
+                   document.querySelectorAll('.project').forEach(p => p.style.display = 'block'); // Show all projects again
+               }
+           }, { once : true }); // Ensure this runs only once per click
+       }
    </script>
 </body>
 </html>
