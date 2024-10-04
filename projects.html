@@ -47,11 +47,9 @@
             border-radius: 10px;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
             cursor: pointer;
-            width: 280px;
-            white-space: normal;
-            text-align: left;
+            width: 280px; /* Fixed width for consistency */
         }
 
         .project:hover {
@@ -71,7 +69,7 @@
         }
 
         .project-details {
-            display: none;
+            display: none; /* Initially hidden */
             margin-top: 10px;
             padding: 10px;
             background-color: #2C3E50;
@@ -100,21 +98,21 @@
         }
 
         .back-button {
-            background-color: #3B4C6B;
-            color: white;
-            padding: 15px 32px;
-            border-radius: 25px;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 1em;
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
+            background-color: #3B4C6B; 
+            color: white; 
+            padding: 15px 32px; 
+            border-radius: 25px; 
+            text-decoration: none; 
+            display: inline-block; 
+            font-size: 1em; 
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
+            margin-top: 20px; 
         }
 
         .back-button:hover {
-            background-color: #526D82;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            background-color:#526D82; 
+            transform :translateY(-5px) scale(1.05); 
+            box-shadow :0 6px 15px rgba(0,0,0,.4);
         }
     </style>
 </head>
@@ -166,24 +164,27 @@
    <script>
        function toggleDetails(project) {
            const details = project.querySelector('.project-details');
-           const isExpanded = project.style.transform === 'scale(1.5)';
+           
+           // Check if the project is already expanded
+           const isExpanded = details.style.display === 'block';
 
-           if (isExpanded) {
-               // If expanded, collapse
+           // Hide all projects
+           document.querySelectorAll('.project').forEach(p => {
+               if (p !== project) {
+                   p.style.display = 'none'; // Hide other projects
+               }
+           });
+
+           // If not expanded, show details and enlarge
+           if (!isExpanded) {
+               details.style.display = 'block';
+               project.style.transform = 'scale(1.5)';
+               project.style.zIndex = '10'; // Bring it to front
+           } else {
+               // If already expanded, reset everything
                details.style.display = 'none';
                project.style.transform = 'scale(1)';
-               project.style.width = '280px';
-               document.querySelectorAll('.project').forEach(p => p.style.display = 'block');
-           } else {
-               // If collapsed, expand
-               document.querySelectorAll('.project').forEach(p => {
-                   if (p !== project) {
-                       p.style.display = 'none';
-                   }
-               });
-               project.style.transform = 'scale(1.5)';
-               project.style.width = '420px'; // Increased width for better readability
-               details.style.display = 'block';
+               document.querySelectorAll('.project').forEach(p => p.style.display = 'block'); // Show all projects again
            }
        }
    </script>
