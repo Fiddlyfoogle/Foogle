@@ -161,12 +161,17 @@
            project.addEventListener('click', function(e) {
                if (e.target.tagName !== 'A') {
                    const details = this.querySelector('.project-details');
+                   const isVisible = details.style.display === 'block';
+                   
+                   // Hide all project details
                    document.querySelectorAll('.project-details').forEach(detail => {
-                       if (detail !== details) {
-                           detail.style.display = 'none';
-                       }
+                       detail.style.display = 'none';
                    });
-                   details.style.display = details.style.display === 'block' ? 'none' : 'block';
+
+                   // If the clicked project wasn't visible, show it
+                   if (!isVisible) {
+                       details.style.display = 'block';
+                   }
                }
            });
        });
