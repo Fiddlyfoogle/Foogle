@@ -158,6 +158,14 @@
 
    <script>
        function toggleDetails(project) {
+           // Close all other project details
+           document.querySelectorAll('.project-details').forEach(detail => {
+               if (detail !== project.querySelector('.project-details')) {
+                   detail.style.display = 'none';
+               }
+           });
+
+           // Toggle the clicked project's details
            const details = project.querySelector('.project-details');
            details.style.display = details.style.display === 'block' ? 'none' : 'block';
        }
