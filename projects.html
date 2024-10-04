@@ -165,19 +165,13 @@
        function toggleDetails(project) {
            const details = project.querySelector('.project-details');
            
-           // Hide all projects
-           document.querySelectorAll('.project').forEach(p => {
-               if (p !== project) {
-                   p.style.display = 'none'; // Hide other projects
-               }
-           });
-
-           // Show or hide details of the clicked project
+           // Toggle visibility of project details
            if (details.style.display === 'block') {
-               details.style.display = 'none'; // Hide details if already visible
-               document.querySelectorAll('.project').forEach(p => p.style.display = 'block'); // Show all projects again
+               details.style.display = 'none'; // Hide if already visible
            } else {
-               details.style.display = 'block'; // Show details
+               // Hide all other project details
+               document.querySelectorAll('.project-details').forEach(detail => detail.style.display = 'none');
+               details.style.display = 'block'; // Show this project's details
            }
        }
    </script>
